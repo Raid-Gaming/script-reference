@@ -1,0 +1,7 @@
+{
+  "filters.multiplayer": "MP",
+  "filters.singleplayer": "SP",
+  "global.home": "Home",
+  "global.logo": "Logo",
+  "header.actions.toggleTheme": "Switch light/dark theme"
+}

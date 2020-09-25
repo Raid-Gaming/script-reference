@@ -1,0 +1,33 @@
+$font: 'PT Sans Caption', 'Avenir', Helvetica, Arial, sans-serif;
+$font-secondary: 'Roboto Slab', 'Helvetica Neue', Arial, sans-serif;
+
+$font-size: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+
+$color-bg: var(--color-bg);
+$color-fg: var(--color-fg);
+$color-border: var(--color-border);
+
+$color-primary: var(--color-primary);
+$color-primary-active: var(--color-primary-active);
+$color-primary-soft: var(--color-primary-soft);
+$color-primary-contrast: var(--color-primary-contrast);
+
+$color-secondary: var(--color-secondary);
+$color-secondary-active: var(--color-secondary-active);
+$color-secondary-soft: var(--color-secondary-soft);
+$color-secondary-contrast: var(--color-fg);
+
+$color-scrollbar: var(--color-scrollbar);
+$color-scrollbar-thumb: var(--color-scrollbar-thumb);
+/*
+$color-bg-header: var(--color-bg-header);
+$color-bg-content: var(--color-bg-content);
+$color-fg-content: var(--color-fg-content);
+$color-fg-desc: var(--color-fg-desc);
+$color-main: var(--color-main);
+$color-accent: var(--color-accent);
+$color-sidebar: var(--color-sidebar);
+$color-warning: var(--color-warning);
+*/
