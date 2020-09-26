@@ -31,7 +31,6 @@ module.exports = {
           { pattern: '@/icons/**', group: 'internal' },
           { pattern: '@/interfaces/**', group: 'internal' },
           { pattern: '@/router/**', group: 'internal' },
-          { pattern: '@/store/**', group: 'internal' },
           { pattern: '@/views/**', group: 'internal' },
           { pattern: '@/**', group: 'internal', position: 'after' },
         ],
