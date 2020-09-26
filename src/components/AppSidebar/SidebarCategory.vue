@@ -44,8 +44,8 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const { collapseAll, expandAll, isCollapsed, toggleCollapse } = useCollapsible(false, props.category.id);
+  setup() {
+    const { collapseAll, expandAll, isCollapsed, toggleCollapse } = useCollapsible();
 
     return {
       collapseAll,
