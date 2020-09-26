@@ -8,6 +8,7 @@ $font-size-lg: 18px;
 $color-bg: var(--color-bg);
 $color-fg: var(--color-fg);
 $color-border: var(--color-border);
+$color-content: var(--color-content);
 
 $color-primary: var(--color-primary);
 $color-primary-active: var(--color-primary-active);
@@ -18,6 +19,12 @@ $color-secondary: var(--color-secondary);
 $color-secondary-active: var(--color-secondary-active);
 $color-secondary-soft: var(--color-secondary-soft);
 $color-secondary-contrast: var(--color-fg);
+
+$color-method-usage: var(--color-method-usage);
+$color-table-header: var(--color-table-header);
+$color-table-row: var(--color-table-row);
+$color-table-row-alt: var(--color-table-row-alt);
+$color-code-block: var(--color-code-block);
 
 $color-scrollbar: var(--color-scrollbar);
 $color-scrollbar-thumb: var(--color-scrollbar-thumb);

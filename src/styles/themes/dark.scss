@@ -2,6 +2,7 @@
   --color-bg: #222;
   --color-fg: #f0f4f8;
   --color-border: #424242;
+  --color-content: #bdbdbd;
 
   --color-primary: #d4183b;
   --color-primary-active: #e72d50;
@@ -13,8 +14,18 @@
   --color-secondary-soft: #f7f7f7;
   --color-secondary-contrast: #f0f4f8;
 
+  --color-method-usage: #3c3c3c;
+  --color-table-header: #2d2d2d;
+  --color-table-row: #3c3c3c;
+  --color-table-row-alt: #333;
+  --color-code-block: #2d2d2d;
+
+  --color-scrollbar: #141414;
+  --color-scrollbar-thumb: #373737;
+  /*
   --color-scrollbar: #141414;
   --color-scrollbar-thumb: #2d2d2d;
+  */
 
   /*
   --color-bg: #222;
@@ -28,4 +39,6 @@
   --color-sidebar: #2d2d2d;
   --color-warning: #d4183b;
   */
+
+  @import 'highlight.js/scss/atom-one-dark.scss';
 }

@@ -1,4 +1,5 @@
 import { computed, ComputedRef, Ref, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import { IApiCategory } from '@/interfaces/iApiCategory';
 import { IApiIndexMethod } from '@/interfaces/iApiIndexMethod';
@@ -12,6 +13,7 @@ interface IMethodsHook {
   fetchIndex: () => Promise<void>;
   filteredApi: ComputedRef<IApiCategory[] | undefined>;
   isLoaded: ComputedRef<boolean>;
+  navigateToMethod: (category: string, namespace: string, method: string) => void;
 }
 
 const api = ref<IApiCategory[]>();
@@ -34,10 +36,22 @@ function filterNamespaces(filters: IFilters, namespaces: IApiIndexNamespace[]): 
 }
 
 export function useMethods(): IMethodsHook {
+  const router = useRouter();
   const { filters } = useFilters();
 
   async function fetchIndex(): Promise<void> {
     api.value = await getApiIndex();
+  }
+
+  function navigateToMethod(category: string, namespace: string, method: string): void {
+    router.push({
+      name: 'Method',
+      params: {
+        category,
+        namespace,
+        method,
+      },
+    });
   }
 
   const isLoaded = computed(() => !!api.value);
@@ -51,15 +65,6 @@ export function useMethods(): IMethodsHook {
       ...category,
       namespaces: filterNamespaces(filters.value, namespaces),
     }));
-    /*
-    return {
-      ...api.value,
-      namespaces: api.value.namespaces.map(({ methods, ...namespace }) => ({
-        ...namespace,
-        methods: methods.filter(() => true),
-      })),
-    };
-    */
   });
 
   return {
@@ -67,5 +72,6 @@ export function useMethods(): IMethodsHook {
     fetchIndex,
     filteredApi,
     isLoaded,
+    navigateToMethod,
   };
 }

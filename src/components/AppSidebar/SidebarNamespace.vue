@@ -64,6 +64,7 @@ $animation-props: 0.2s ease-in-out;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   font-size: $font-size;
   padding: 12px 16px;

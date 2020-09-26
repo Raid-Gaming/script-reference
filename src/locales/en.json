@@ -3,7 +3,18 @@
   "filters.singleplayer": "SP",
   "global.home": "Home",
   "global.logo": "Logo",
+  "global.no": "No",
+  "global.yes": "Yes",
   "header.actions.toggleTheme": "Switch light/dark theme",
+  "method.description": "Description",
+  "method.example": "Example",
+  "method.params": "Parameters",
+  "method.params.description": "Description",
+  "method.params.name": "Name",
+  "method.params.optional": "Optional",
+  "method.params.type": "Type",
+  "method.returnType": "Return type",
+  "method.usage.copy": "Click to copy",
   "sidebar.collapseAll": "Collapse all",
   "sidebar.expandAll": "Expand all"
 }

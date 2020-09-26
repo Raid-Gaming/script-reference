@@ -3,6 +3,7 @@
     <template v-if="isLoaded">
       <app-header />
       <app-sidebar />
+      <router-view />
     </template>
     <spinner :visible="!isLoaded" full-page />
   </div>
@@ -45,6 +46,8 @@ export default defineComponent({
 
 @import '@/styles/globals.scss';
 
+$content-width: minmax(0, 1fr);
+
 html,
 body,
 #root {
@@ -53,10 +56,21 @@ body,
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: $color-scrollbar-thumb $color-scrollbar;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: $color-scrollbar;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-scrollbar-thumb;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $font;
   font-size: $font-size;
   font-weight: normal;
   text-rendering: optimizeLegibility;
@@ -70,8 +84,8 @@ body,
   grid-template-areas:
     'sidebar header'
     'sidebar main';
-  grid-template-columns: 360px 1fr;
-  grid-template-rows: min-content 1fr;
+  grid-template-columns: 360px $content-width;
+  grid-template-rows: min-content $content-width;
 }
 
 a {
@@ -92,14 +106,5 @@ a {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: $color-scrollbar;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $color-scrollbar-thumb;
 }
 </style>
