@@ -3,5 +3,7 @@
   "filters.singleplayer": "SP",
   "global.home": "Home",
   "global.logo": "Logo",
-  "header.actions.toggleTheme": "Switch light/dark theme"
+  "header.actions.toggleTheme": "Switch light/dark theme",
+  "sidebar.collapseAll": "Collapse all",
+  "sidebar.expandAll": "Expand all"
 }

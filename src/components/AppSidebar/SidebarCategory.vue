@@ -1,5 +1,6 @@
 <template>
   <div class="category" @click="toggleCollapse">
+    <div />
     <span>{{ category.name }}</span>
     <chevron-down-icon
       class="category__chevron"
@@ -7,6 +8,11 @@
         'category__chevron--collapsed': isCollapsed,
       }"
     />
+  </div>
+  <div class="category__expand">
+    <r-button flat @click="expandAll(category.id)">{{ $t('sidebar.expandAll') }}</r-button>
+    <span>/</span>
+    <r-button flat @click="collapseAll(category.id)">{{ $t('sidebar.collapseAll') }}</r-button>
   </div>
   <div v-show="!isCollapsed" class="namespaces" ref="element">
     <sidebar-namespace
@@ -38,10 +44,12 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
-    const { isCollapsed, toggleCollapse } = useCollapsible();
+  setup(props) {
+    const { collapseAll, expandAll, isCollapsed, toggleCollapse } = useCollapsible(false, props.category.id);
 
     return {
+      collapseAll,
+      expandAll,
       isCollapsed,
       toggleCollapse,
     };
@@ -86,5 +94,19 @@ $animation-props: 0.2s ease-in-out;
 .category:hover .category__chevron {
   opacity: 1;
   transform: rotate(0deg);
+}
+
+.category__expand {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: $color-secondary;
+  padding: 8px 16px;
+}
+
+.category__expand::v-deep(.r-button):hover {
+  background: $color-primary !important;
+  color: $color-primary-contrast !important;
 }
 </style>
