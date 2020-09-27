@@ -2,6 +2,9 @@
   <div class="search">
     <magnify-icon class="search__icon" />
     <input type="text" class="search__input" v-model="value" />
+    <transition name="fade">
+      <close-icon v-if="value" class="search__icon search__icon--clickable" @click="clear" />
+    </transition>
     <search-results v-if="results.length" :results="results" @clear="clear" />
   </div>
 </template>
@@ -11,6 +14,7 @@ import { defineComponent } from 'vue';
 
 import SearchResults from '@/components/Search/SearchResults.vue';
 
+import CloseIcon from '@/icons/Close.vue';
 import MagnifyIcon from '@/icons/Magnify.vue';
 
 import { useSearch } from '@/hooks/search';
@@ -18,6 +22,7 @@ import { useSearch } from '@/hooks/search';
 export default defineComponent({
   components: {
     SearchResults,
+    CloseIcon,
     MagnifyIcon,
   },
   setup() {
@@ -42,7 +47,7 @@ export default defineComponent({
   flex-direction: row;
   align-items: center;
   height: $search-height;
-  width: 240px;
+  width: 280px;
   border: 1px solid $color-border;
   border-radius: calc(#{$search-height} / 2);
 }
@@ -55,13 +60,17 @@ export default defineComponent({
   flex-shrink: 0;
 }
 
+.search__icon--clickable {
+  cursor: pointer;
+}
+
 .search__input {
   padding: 0;
-  padding-right: 16px;
   outline: none;
   border: 0;
   height: 100%;
-  flex-grow: 1;
+  min-width: 0;
+  flex: 1;
   background: transparent;
   color: $color-fg;
 }
