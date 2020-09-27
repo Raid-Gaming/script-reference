@@ -79,6 +79,7 @@ export default defineComponent({
 .page-method {
   position: relative;
   padding: 32px;
+  overflow-y: auto;
 }
 
 .page-method__name {
@@ -94,6 +95,7 @@ export default defineComponent({
 
 .page-method__engine {
   background: $color-primary;
+  color: $color-primary-contrast;
   border-radius: 4px;
   font-size: $font-size;
   padding: 4px;

@@ -12,7 +12,7 @@
       <span>
         <p v-for="line of param.description" :key="line" v-html="line" />
       </span>
-      <span>{{ getOptionalTranslation(param.name) }}</span>
+      <span>{{ getOptionalTranslation(param.optional) }}</span>
     </div>
   </div>
 </template>
