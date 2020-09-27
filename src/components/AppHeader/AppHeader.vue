@@ -77,6 +77,7 @@ export default defineComponent({
   padding: 0 3px;
   grid-area: header;
   user-select: none;
+  z-index: 10;
 
   & > *:not(:last-child) {
     margin-right: 12px;

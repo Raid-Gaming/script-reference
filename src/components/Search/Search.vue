@@ -1,18 +1,33 @@
 <template>
   <div class="search">
     <magnify-icon class="search__icon" />
-    <input type="text" class="search__input" />
+    <input type="text" class="search__input" v-model="value" />
+    <search-results v-if="results.length" :results="results" @clear="clear" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import SearchResults from '@/components/Search/SearchResults.vue';
+
 import MagnifyIcon from '@/icons/Magnify.vue';
+
+import { useSearch } from '@/hooks/search';
 
 export default defineComponent({
   components: {
+    SearchResults,
     MagnifyIcon,
+  },
+  setup() {
+    const { clear, results, value } = useSearch();
+
+    return {
+      clear,
+      results,
+      value,
+    };
   },
 });
 </script>
@@ -22,6 +37,7 @@ export default defineComponent({
 @import '@/styles/search.scss';
 
 .search {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
