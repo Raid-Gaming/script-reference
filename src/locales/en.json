@@ -6,6 +6,7 @@
   "global.no": "No",
   "global.yes": "Yes",
   "header.actions.toggleTheme": "Switch light/dark theme",
+  "method.deprecated": "Deprecated",
   "method.description": "Description",
   "method.example": "Example",
   "method.params": "Parameters",

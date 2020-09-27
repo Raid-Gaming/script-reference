@@ -1,8 +1,12 @@
 <template>
   <div class="page-method">
     <template v-if="isLoaded">
-      <!-- TODO: add engine + sourceFile indicator -->
-      <h1 class="page-method__name">{{ method.name }}</h1>
+      <h1 class="page-method__name">
+        <span>{{ method.name }}</span>
+        <span v-if="method.sourceFile" class="page-method__source-file">({{ method.sourceFile }})</span>
+        <span v-if="method.engine" class="page-method__engine">{{ method.engine }}</span>
+        <span v-if="method.deprecated" class="page-method__deprecated">({{ $t('method.deprecated') }})</span>
+      </h1>
       <method-usage class="page-method__usage" :content="method.usage" />
 
       <r-section :title="$t('method.description')">
@@ -70,6 +74,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/globals.scss';
+
 .page-method {
   position: relative;
   padding: 32px;
@@ -79,6 +85,28 @@ export default defineComponent({
   font-size: 30px;
   font-weight: 400;
   margin: 0 0 32px 0;
+  gap: 12px;
+}
+
+.page-method__name span {
+  margin-right: 8px;
+}
+
+.page-method__engine {
+  background: $color-primary;
+  border-radius: 4px;
+  font-size: $font-size;
+  padding: 4px;
+}
+
+.page-method__source-file {
+  color: $color-content;
+  font-size: $font-size;
+}
+
+.page-method__deprecated {
+  color: $color-danger;
+  font-size: $font-size;
 }
 
 .page-method__usage {
