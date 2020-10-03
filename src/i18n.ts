@@ -23,6 +23,7 @@ function getI18nConfig(): I18nOptions {
     fallbackLocale: 'en',
     messages: loadLocaleMessages(),
     silentTranslationWarn: process.env.NODE_ENV === 'development',
+    warnHtmlInMessage: 'off', // translations are bundled and known, no possibility for XSS
   };
   return config;
 }
