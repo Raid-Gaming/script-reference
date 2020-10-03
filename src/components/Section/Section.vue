@@ -29,7 +29,7 @@ export default defineComponent({
 
 .r-section__heading {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: normal;
 }
 
 .r-section::v-deep(p) {

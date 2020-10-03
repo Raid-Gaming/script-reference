@@ -84,7 +84,7 @@ export default defineComponent({
 
 .page-method__name {
   font-size: 30px;
-  font-weight: 400;
+  font-weight: normal;
   margin: 0 0 32px 0;
   gap: 12px;
 }
