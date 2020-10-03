@@ -3,7 +3,10 @@
     <template v-if="isLoaded">
       <app-header />
       <app-sidebar />
-      <router-view />
+      <main class="app__main">
+        <router-view class="app__route" />
+        <app-footer />
+      </main>
     </template>
     <spinner :visible="!isLoaded" full-page />
   </div>
@@ -12,6 +15,7 @@
 <script lang="ts">
 import { computed, defineComponent, onBeforeMount } from 'vue';
 
+import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
 import AppSidebar from '@/components/AppSidebar/AppSidebar.vue';
 import Spinner from '@/components/Spinner/Spinner.vue';
@@ -21,6 +25,7 @@ import { useTheme } from '@/hooks/theme';
 
 export default defineComponent({
   components: {
+    AppFooter,
     AppHeader,
     AppSidebar,
     Spinner,
@@ -86,6 +91,17 @@ body,
     'sidebar main';
   grid-template-columns: 360px $content-width;
   grid-template-rows: min-content $content-width;
+}
+
+.app__main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+}
+
+.app__route {
+  flex: 1;
 }
 
 a {

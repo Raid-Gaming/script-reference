@@ -77,9 +77,7 @@ export default defineComponent({
 @import '@/styles/globals.scss';
 
 .page-method {
-  position: relative;
   padding: 32px;
-  overflow-y: auto;
 }
 
 .page-method__name {

@@ -1,6 +1,8 @@
 {
   "filters.multiplayer": "MP",
   "filters.singleplayer": "SP",
+  "footer.author": "Made with &hearts; by <a href=\"https://jordyrymenants.com\" target=\"_blank\">Jordy Rymenants</a>",
+  "footer.copyright": "Copyright &copy; Raid Gaming",
   "global.appTitle": "Scripting API - Raid Gaming",
   "global.home": "Home",
   "global.logo": "Logo",

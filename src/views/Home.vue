@@ -23,6 +23,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .page-home__content {
   padding: 32px;
-  overflow-y: auto;
 }
 </style>
