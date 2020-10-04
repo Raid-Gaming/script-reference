@@ -1,6 +1,8 @@
 <template>
   <div class="method-usage">
-    <span class="method-usage__content">{{ content }}</span>
+    <div class="method-usage__wrapper">
+      <span class="method-usage__content">{{ content }}</span>
+    </div>
     <r-button class="method-usage__copy" :title="$t('method.usage.copy')" large @click="toClipboard">
       <content-copy-icon />
     </r-button>
@@ -51,15 +53,29 @@ export default defineComponent({
   border-radius: 4px;
 }
 
+.method-usage__wrapper {
+  overflow-x: auto;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
 .method-usage__content {
   font-size: $font-size-lg;
   font-style: italic;
   padding: 0 16px;
+  white-space: nowrap;
 }
 
 .method-usage__copy {
   background: $color-border;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .method-usage__content {
+    font-size: $font-size-sm;
+  }
 }
 </style>

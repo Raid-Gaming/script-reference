@@ -2,6 +2,7 @@
   <div id="app" :class="themeId">
     <template v-if="isLoaded">
       <app-header />
+      <app-header-mobile />
       <app-sidebar />
       <main class="app__main">
         <router-view class="app__route" />
@@ -17,6 +18,7 @@ import { computed, defineComponent, onBeforeMount } from 'vue';
 
 import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
+import AppHeaderMobile from '@/components/AppHeader/AppHeaderMobile.vue';
 import AppSidebar from '@/components/AppSidebar/AppSidebar.vue';
 import Spinner from '@/components/Spinner/Spinner.vue';
 
@@ -27,6 +29,7 @@ export default defineComponent({
   components: {
     AppFooter,
     AppHeader,
+    AppHeaderMobile,
     AppSidebar,
     Spinner,
   },
@@ -67,6 +70,7 @@ body,
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
   background-color: $color-scrollbar;
 }
 
@@ -94,6 +98,7 @@ body,
 }
 
 .app__main {
+  grid-area: main;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -122,5 +127,13 @@ a {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  #app {
+    grid-template-areas:
+      'header header'
+      'main main';
+  }
 }
 </style>

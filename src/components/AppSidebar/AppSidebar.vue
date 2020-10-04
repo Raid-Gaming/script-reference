@@ -32,4 +32,10 @@ export default defineComponent({
   height: 100%;
   overflow-y: scroll;
 }
+
+@media screen and (max-width: 1023px) {
+  .sidebar {
+    display: none;
+  }
+}
 </style>

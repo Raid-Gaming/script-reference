@@ -121,4 +121,10 @@ export default defineComponent({
     height: 14px;
   }
 }
+
+@media screen and (max-width: 1023px) {
+  .header {
+    display: none;
+  }
+}
 </style>

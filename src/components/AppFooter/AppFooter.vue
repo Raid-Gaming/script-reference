@@ -16,4 +16,12 @@
   border-top: 1px solid $color-border;
   color: $color-content;
 }
+
+@media screen and (max-width: 767px) {
+  .footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
 </style>

@@ -36,6 +36,8 @@
   font-weight: normal;
   font-family: $font-secondary;
   color: $color-primary-contrast;
+  text-align: center;
+  min-width: 300px;
 }
 
 .banner__shapes {
@@ -144,6 +146,12 @@
     transform: translateY(-1000px) rotate(720deg);
     opacity: 0;
     border-radius: 50%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .banner {
+    height: 200px;
   }
 }
 </style>

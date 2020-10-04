@@ -81,14 +81,22 @@ export default defineComponent({
 }
 
 .page-method__name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 30px;
   font-weight: normal;
   margin: 0 0 32px 0;
   gap: 12px;
+  white-space: nowrap;
 }
 
-.page-method__name span {
-  margin-right: 8px;
+.page-method__name > span {
+  &:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .page-method__engine {
@@ -111,5 +119,15 @@ export default defineComponent({
 
 .page-method__usage {
   margin-bottom: 24px;
+}
+
+@media screen and (max-width: 767px) {
+  .page-method__name {
+    font-size: 20px;
+  }
+
+  .page-method__engine {
+    font-size: $font-size-sm;
+  }
 }
 </style>
