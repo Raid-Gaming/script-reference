@@ -8,12 +8,12 @@ const api = setup({
 });
 const { get } = api;
 
-export async function getApiIndex(): Promise<IApiCategory[]> {
+export async function getApiIndex() {
   const { data } = await get<IApiCategory[]>('/index.json');
   return data;
 }
 
-export async function getApiMethod(category: string, namespace: string, method: string): Promise<IApiMethod> {
+export async function getApiMethod(category: string, namespace: string, method: string) {
   const { data } = await get<IApiMethod>(`/${category}/${namespace}/${method}.json`);
   return data;
 }

@@ -1,4 +1,4 @@
-import { computed, ComputedRef, Ref, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { IApiCategory } from '@/interfaces/iApiCategory';
@@ -8,25 +8,17 @@ import { IApiIndexNamespace } from '@/interfaces/iApiIndexNamespace';
 import { getApiIndex } from '@/api';
 import { IFilters, useFilters } from '@/hooks/filters';
 
-interface IMethodsHook {
-  api: Ref<IApiCategory[] | undefined>;
-  fetchIndex: () => Promise<void>;
-  filteredApi: ComputedRef<IApiCategory[] | undefined>;
-  isLoaded: ComputedRef<boolean>;
-  navigateToMethod: (category: string, namespace: string, method: string) => void;
-}
-
 const api = ref<IApiCategory[]>();
 
-function isMethodInFilters(filters: IFilters, engine?: 'SP' | 'MP'): boolean {
+function isMethodInFilters(filters: IFilters, engine?: 'SP' | 'MP') {
   return !engine || (engine === 'SP' && filters.singleplayer) || (engine === 'MP' && filters.multiplayer);
 }
 
-function filterMethods(filters: IFilters, methods: IApiIndexMethod[]): IApiIndexMethod[] {
+function filterMethods(filters: IFilters, methods: IApiIndexMethod[]) {
   return methods.filter(({ engine }) => isMethodInFilters(filters, engine));
 }
 
-function filterNamespaces(filters: IFilters, namespaces: IApiIndexNamespace[]): IApiIndexNamespace[] {
+function filterNamespaces(filters: IFilters, namespaces: IApiIndexNamespace[]) {
   return namespaces
     .map(({ methods, ...namespace }) => ({
       ...namespace,
@@ -35,15 +27,15 @@ function filterNamespaces(filters: IFilters, namespaces: IApiIndexNamespace[]): 
     .filter(({ methods }) => methods.length > 0);
 }
 
-export function useMethods(): IMethodsHook {
+export function useMethods() {
   const router = useRouter();
   const { filters } = useFilters();
 
-  async function fetchIndex(): Promise<void> {
+  async function fetchIndex() {
     api.value = await getApiIndex();
   }
 
-  function navigateToMethod(category: string, namespace: string, method: string): void {
+  function navigateToMethod(category: string, namespace: string, method: string) {
     router.push({
       name: 'Method',
       params: {

@@ -25,7 +25,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    function toClipboard(): void {
+    function toClipboard() {
       const copyField = document.createElement('textarea');
       document.querySelector('body')?.appendChild(copyField);
       copyField.value = props.content;

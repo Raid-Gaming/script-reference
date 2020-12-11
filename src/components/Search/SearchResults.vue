@@ -35,11 +35,11 @@ export default defineComponent({
   setup(_, { emit }) {
     const { navigateToMethod } = useMethods();
 
-    function getKey(value: ISearchResult): string {
+    function getKey(value: ISearchResult) {
       return `${value.category}-${value.namespace}-${value.name}`;
     }
 
-    function goToMethod(result: ISearchResult): void {
+    function goToMethod(result: ISearchResult) {
       emit('clear');
       navigateToMethod(result.categoryId, result.namespace, result.name);
     }

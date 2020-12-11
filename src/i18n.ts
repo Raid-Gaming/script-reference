@@ -1,8 +1,8 @@
 // eslint-disable-next-line object-curly-newline
-import { createI18n, I18nOptions, LocaleMessages, VueMessageType } from 'vue-i18n';
+import { createI18n } from 'vue-i18n';
 
-function loadLocaleMessages(): LocaleMessages<VueMessageType> {
-  const messages: LocaleMessages<VueMessageType> = {};
+function loadLocaleMessages() {
+  const messages: Record<string, string> = {};
   if (process.env.NODE_ENV !== 'test') {
     const locales = require.context('./locales', true, /[a-z0-9]+\.json$/i);
     locales.keys().forEach((key) => {
@@ -16,16 +16,11 @@ function loadLocaleMessages(): LocaleMessages<VueMessageType> {
   return messages;
 }
 
-function getI18nConfig(): I18nOptions {
-  const config: I18nOptions = {
-    legacy: true,
-    locale: 'en',
-    fallbackLocale: 'en',
-    messages: loadLocaleMessages(),
-    silentTranslationWarn: process.env.NODE_ENV === 'development',
-    warnHtmlInMessage: 'off', // translations are bundled and known, no possibility for XSS
-  };
-  return config;
-}
-
-export default createI18n(getI18nConfig());
+export default createI18n({
+  legacy: true,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: loadLocaleMessages(),
+  silentTranslationWarn: process.env.NODE_ENV === 'development',
+  warnHtmlInMessage: 'off', // translations are bundled and known, no possibility for XSS
+});

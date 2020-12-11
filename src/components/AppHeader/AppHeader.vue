@@ -32,7 +32,7 @@ import WeatherSunnyIcon from '@/icons/WeatherSunny.vue';
 import { useFilters } from '@/hooks/filters';
 import { useTheme } from '@/hooks/theme';
 
-function getButtonColor(isActive: boolean): string {
+function getButtonColor(isActive: boolean) {
   return isActive ? 'primary' : 'secondary';
 }
 

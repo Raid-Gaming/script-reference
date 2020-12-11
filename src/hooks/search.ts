@@ -1,5 +1,5 @@
 import { go as fuzzySearch } from 'fuzzysort';
-import { computed, ComputedRef, Ref, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { IApiIndexMethod } from '@/interfaces/iApiIndexMethod';
 
@@ -11,18 +11,12 @@ export interface ISearchResult extends IApiIndexMethod {
   namespace: string;
 }
 
-interface ISearchHook {
-  clear: () => void;
-  results: ComputedRef<ISearchResult[]>;
-  value: Ref<string>;
-}
-
-export function useSearch(): ISearchHook {
+export function useSearch() {
   const { filteredApi } = useMethods();
 
   const value = ref('');
 
-  function clear(): void {
+  function clear() {
     value.value = '';
   }
 

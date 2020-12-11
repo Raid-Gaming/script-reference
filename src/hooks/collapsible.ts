@@ -1,40 +1,33 @@
-import { onBeforeUnmount, onMounted, ref, Ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 import eventBus, { events } from '@/eventBus';
 
-function collapseAll(key?: string): void {
+function collapseAll(key?: string) {
   eventBus.emit(events.COLLAPSE_ALL, key);
 }
 
-function expandAll(key?: string): void {
+function expandAll(key?: string) {
   eventBus.emit(events.EXPAND_ALL, key);
 }
-interface ICollapsibleHook {
-  collapseAll: (key?: string) => void;
-  expandAll: (key?: string) => void;
-  isCollapsed: Ref<boolean>;
-  setCollapsed: (value: boolean) => void;
-  toggleCollapse: () => void;
-}
 
-export function useCollapsible(defaultValue = false, key?: string): ICollapsibleHook {
+export function useCollapsible(defaultValue = false, key?: string) {
   const isCollapsed = ref(defaultValue);
 
-  function setCollapsed(value: boolean): void {
+  function setCollapsed(value: boolean) {
     isCollapsed.value = value;
   }
 
-  function toggleCollapse(): void {
+  function toggleCollapse() {
     isCollapsed.value = !isCollapsed.value;
   }
 
-  function collapse(eventKey?: string): void {
+  function collapse(eventKey?: string) {
     if (eventKey === key) {
       setCollapsed(true);
     }
   }
 
-  function expand(eventKey?: string): void {
+  function expand(eventKey?: string) {
     if (eventKey === key) {
       setCollapsed(false);
     }

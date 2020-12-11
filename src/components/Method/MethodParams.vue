@@ -43,7 +43,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
 
-    function getOptionalTranslation(isOptional: boolean): string {
+    function getOptionalTranslation(isOptional: boolean) {
       return isOptional ? t('global.yes') : t('global.no');
     }
 

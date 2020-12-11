@@ -16,7 +16,7 @@ export default defineComponent({
     MenuIcon,
   },
   setup() {
-    function openMenu(): void {
+    function openMenu() {
       console.log('open sidebar');
     }
 

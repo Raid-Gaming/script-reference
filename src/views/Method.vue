@@ -57,7 +57,7 @@ export default defineComponent({
 
     const isLoaded = computed(() => !!method.value);
 
-    async function fetchData(): Promise<void> {
+    async function fetchData() {
       const { params } = route;
       method.value = undefined;
       method.value = await getApiMethod(params.category as string, params.namespace as string, params.method as string);

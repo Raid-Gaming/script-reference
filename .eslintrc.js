@@ -14,12 +14,7 @@ module.exports = {
     'max-len': ['error', 120],
     'lines-between-class-members': 'off',
     curly: ['error', 'all'],
-    '@typescript-eslint/explicit-function-return-type': [
-      'error',
-      {
-        allowExpressions: true,
-      },
-    ],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'import/order': [
       'error',
       {
