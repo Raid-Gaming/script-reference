@@ -8,6 +8,7 @@
     "build": "yarn build:api && yarn build:app",
     "build:app": "vue-cli-service build",
     "build:api": "rimraf ./public/api && cd api && yarn build && cd .. && mv ./api/dist ./public/api",
+    "clean": "rimraf node_modules && rimraf dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
