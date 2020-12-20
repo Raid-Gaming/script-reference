@@ -26,6 +26,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import { searchCollapsible } from '@/components/Search/Search.vue';
+
 import { useMethods } from '@/hooks/methods';
 import { ISearchResult } from '@/hooks/search';
 
@@ -43,6 +45,7 @@ export default defineComponent({
   },
   emits: ['clear'],
   setup(_, { emit }) {
+    const { setCollapsed } = searchCollapsible;
     const { navigateToMethod } = useMethods();
 
     function getKey(value: ISearchResult) {
@@ -52,6 +55,7 @@ export default defineComponent({
     function goToMethod(result: ISearchResult) {
       emit('clear');
       navigateToMethod(result.categoryId, result.namespace, result.name);
+      setCollapsed(true);
     }
 
     return {
