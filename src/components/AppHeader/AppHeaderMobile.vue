@@ -32,17 +32,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
 import DarkModeToggle from '@/components/AppHeader/DarkModeToggle.vue';
 import Filters from '@/components/AppHeader/Filters.vue';
-import { sidebarCollapsible } from '@/components/AppSidebar/AppSidebar.vue';
-import Search, { searchCollapsible } from '@/components/Search/Search.vue';
+import Search from '@/components/Search/Search.vue';
 
 import ArrowLeftIcon from '@/icons/ArrowLeft.vue';
 import HomeIcon from '@/icons/Home.vue';
 import MagnifyIcon from '@/icons/Magnify.vue';
 import MenuIcon from '@/icons/Menu.vue';
+
+import { useCollapsible } from '@/hooks/collapsible';
 
 export default defineComponent({
   components: {
@@ -55,12 +56,15 @@ export default defineComponent({
     Search,
   },
   setup() {
-    const { isCollapsed: isSearchCollapsed, setCollapsed: setSearchCollapsed } = searchCollapsible;
+    const { isCollapsed: isSearchCollapsed, setCollapsed: setSearchCollapsed } = inject(
+      'searchCollapsible',
+      useCollapsible(),
+    );
     const {
       isCollapsed: isSidebarCollapsed,
       setCollapsed: setSidebarCollapsed,
       toggleCollapse: toggleSidebarCollapse,
-    } = sidebarCollapsible;
+    } = inject('sidebarCollapsible', useCollapsible());
 
     function goHome() {
       window.location.href = 'https://raid-gaming.net';

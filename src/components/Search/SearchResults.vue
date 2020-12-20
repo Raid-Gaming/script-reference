@@ -24,10 +24,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
-import { searchCollapsible } from '@/components/Search/Search.vue';
-
+import { useCollapsible } from '@/hooks/collapsible';
 import { useMethods } from '@/hooks/methods';
 import { ISearchResult } from '@/hooks/search';
 
@@ -45,7 +44,7 @@ export default defineComponent({
   },
   emits: ['clear'],
   setup(_, { emit }) {
-    const { setCollapsed } = searchCollapsible;
+    const { setCollapsed } = inject('searchCollapsible', useCollapsible());
     const { navigateToMethod } = useMethods();
 
     function getKey(value: ISearchResult) {

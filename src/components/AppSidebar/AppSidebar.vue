@@ -10,21 +10,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
 import SidebarCategory from '@/components/AppSidebar/SidebarCategory.vue';
 
 import { useCollapsible } from '@/hooks/collapsible';
 import { useMethods } from '@/hooks/methods';
 
-export const sidebarCollapsible = useCollapsible(true, 'sidebarCollapsible');
-
 export default defineComponent({
   components: {
     SidebarCategory,
   },
   setup() {
-    const { isCollapsed } = sidebarCollapsible;
+    const { isCollapsed } = inject('sidebarCollapsible', useCollapsible());
     const { filteredApi } = useMethods();
 
     return { filteredApi, isCollapsed };

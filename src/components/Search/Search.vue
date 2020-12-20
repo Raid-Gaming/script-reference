@@ -22,10 +22,7 @@ import SearchResults from '@/components/Search/SearchResults.vue';
 import CloseIcon from '@/icons/Close.vue';
 import MagnifyIcon from '@/icons/Magnify.vue';
 
-import { useCollapsible } from '@/hooks/collapsible';
 import { useSearch } from '@/hooks/search';
-
-export const searchCollapsible = useCollapsible(true, 'searchCollapsible');
 
 export default defineComponent({
   components: {

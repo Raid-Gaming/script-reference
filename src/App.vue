@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount } from 'vue';
+import { computed, defineComponent, onBeforeMount, provide } from 'vue';
 
 import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
@@ -22,6 +22,7 @@ import AppHeaderMobile from '@/components/AppHeader/AppHeaderMobile.vue';
 import AppSidebar from '@/components/AppSidebar/AppSidebar.vue';
 import Spinner from '@/components/Spinner/Spinner.vue';
 
+import { useCollapsible } from '@/hooks/collapsible';
 import { useMethods } from '@/hooks/methods';
 import { useTheme } from '@/hooks/theme';
 
@@ -34,8 +35,13 @@ export default defineComponent({
     Spinner,
   },
   setup() {
+    const searchCollapsible = useCollapsible(true, 'searchCollapsible');
+    const sidebarCollapsible = useCollapsible(true, 'sidebarCollapsible');
     const { fetchIndex, isLoaded } = useMethods();
     const { theme } = useTheme();
+
+    provide('searchCollapsible', searchCollapsible);
+    provide('sidebarCollapsible', sidebarCollapsible);
 
     const themeId = computed(() => `theme-${theme.value}`);
 

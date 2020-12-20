@@ -5,10 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
-import { sidebarCollapsible } from '@/components/AppSidebar/AppSidebar.vue';
-
+import { useCollapsible } from '@/hooks/collapsible';
 import { useMethods } from '@/hooks/methods';
 
 export default defineComponent({
@@ -28,7 +27,7 @@ export default defineComponent({
   },
   setup(props) {
     const { navigateToMethod } = useMethods();
-    const { setCollapsed } = sidebarCollapsible;
+    const { setCollapsed } = inject('sidebarCollapsible', useCollapsible());
 
     function onMethodClick() {
       const { categoryId, method, namespace } = props;
