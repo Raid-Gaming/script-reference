@@ -1,5 +1,10 @@
 <template>
-  <div class="search-results__wrapper">
+  <div
+    class="search-results__wrapper"
+    :class="{
+      'search-results__wrapper--mobile': mobile,
+    }"
+  >
     <div class="search-results">
       <r-button
         v-for="result of results"
@@ -26,6 +31,11 @@ import { ISearchResult } from '@/hooks/search';
 
 export default defineComponent({
   props: {
+    mobile: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     results: {
       type: Array,
       required: true,
@@ -140,5 +150,28 @@ export default defineComponent({
 
 .search-results__namespace {
   background: $color-search-border;
+}
+
+.search-results__wrapper--mobile {
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: none;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  .search-results {
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    height: 100%;
+    max-height: 100%;
+    background: $color-bg;
+  }
 }
 </style>

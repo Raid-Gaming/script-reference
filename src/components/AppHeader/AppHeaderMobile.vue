@@ -1,27 +1,88 @@
 <template>
-  <header class="header">
-    <r-button flat @click="openMenu">
-      <menu-icon />
-    </r-button>
+  <header
+    class="header"
+    :class="{
+      'header--open': !isSidebarCollapsed,
+    }"
+  >
+    <template v-if="isSearchCollapsed">
+      <r-button flat @click="toggleSidebarCollapse">
+        <menu-icon />
+      </r-button>
+      <template v-if="isSidebarCollapsed">
+        <r-button flat @click="onSearchClick" class="flex--right">
+          <magnify-icon />
+        </r-button>
+        <r-button flat @click="goHome">
+          <home-icon />
+        </r-button>
+      </template>
+      <template v-else>
+        <filters />
+        <dark-mode-toggle />
+      </template>
+    </template>
+    <template v-else>
+      <r-button flat @click="setSearchCollapsed(true)">
+        <arrow-left-icon />
+      </r-button>
+      <search mobile />
+    </template>
   </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import DarkModeToggle from '@/components/AppHeader/DarkModeToggle.vue';
+import Filters from '@/components/AppHeader/Filters.vue';
+import { sidebarCollapsible } from '@/components/AppSidebar/AppSidebar.vue';
+import Search from '@/components/Search/Search.vue';
+
+import ArrowLeftIcon from '@/icons/ArrowLeft.vue';
+import HomeIcon from '@/icons/Home.vue';
+import MagnifyIcon from '@/icons/Magnify.vue';
 import MenuIcon from '@/icons/Menu.vue';
+
+import { useCollapsible } from '@/hooks/collapsible';
 
 export default defineComponent({
   components: {
+    ArrowLeftIcon,
+    DarkModeToggle,
+    Filters,
+    HomeIcon,
+    MagnifyIcon,
     MenuIcon,
+    Search,
   },
   setup() {
-    function openMenu() {
-      console.log('open sidebar');
+    const { isCollapsed: isSearchCollapsed, setCollapsed: setSearchCollapsed } = useCollapsible(
+      true,
+      'searchCollapsible',
+    );
+    const {
+      isCollapsed: isSidebarCollapsed,
+      setCollapsed: setSidebarCollapsed,
+      toggleCollapse: toggleSidebarCollapse,
+    } = sidebarCollapsible;
+
+    function goHome() {
+      window.location.href = 'https://raid-gaming.net';
+    }
+
+    function onSearchClick() {
+      setSidebarCollapsed(true);
+      setSearchCollapsed(false);
     }
 
     return {
-      openMenu,
+      goHome,
+      isSearchCollapsed,
+      isSidebarCollapsed,
+      onSearchClick,
+      setSearchCollapsed,
+      toggleSidebarCollapse,
     };
   },
 });
@@ -48,14 +109,26 @@ export default defineComponent({
     user-select: none;
     z-index: 10;
 
-    & > *:not(:last-child) {
-      margin-right: 12px;
-    }
-
     a {
       padding: 0 12px;
       text-decoration: none;
     }
   }
+
+  .header--open {
+    justify-content: space-between;
+
+    .filters {
+      margin: 0;
+    }
+
+    .dark-mode-toggle {
+      margin: 0 12px;
+    }
+  }
+}
+
+.flex--right {
+  margin-left: auto;
 }
 </style>

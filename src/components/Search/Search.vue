@@ -1,11 +1,16 @@
 <template>
-  <div class="search">
+  <div
+    class="search"
+    :class="{
+      'search--mobile': mobile,
+    }"
+  >
     <magnify-icon class="search__icon" />
     <input type="text" class="search__input" v-model="value" />
     <transition name="fade">
       <close-icon v-if="value" class="search__icon search__icon--clickable" @click="clear" />
     </transition>
-    <search-results v-if="results.length" :results="results" @clear="clear" />
+    <search-results v-if="results.length" :mobile="mobile" :results="results" @clear="clear" />
   </div>
 </template>
 
@@ -24,6 +29,13 @@ export default defineComponent({
     SearchResults,
     CloseIcon,
     MagnifyIcon,
+  },
+  props: {
+    mobile: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   setup() {
     const { clear, results, value } = useSearch();
@@ -50,6 +62,12 @@ export default defineComponent({
   width: 280px;
   border: 1px solid $color-border;
   border-radius: calc(#{$search-height} / 2);
+}
+
+.search--mobile {
+  width: 0;
+  flex: 1;
+  margin-right: 12px;
 }
 
 .search__icon {

@@ -1,5 +1,10 @@
 <template>
-  <nav class="sidebar">
+  <nav
+    class="sidebar"
+    :class="{
+      'sidebar--collapsed': isCollapsed,
+    }"
+  >
     <sidebar-category v-for="category of filteredApi" :key="category.id" :category="category" />
   </nav>
 </template>
@@ -9,16 +14,20 @@ import { defineComponent } from 'vue';
 
 import SidebarCategory from '@/components/AppSidebar/SidebarCategory.vue';
 
+import { useCollapsible } from '@/hooks/collapsible';
 import { useMethods } from '@/hooks/methods';
+
+export const sidebarCollapsible = useCollapsible(true, 'sidebarCollapsible');
 
 export default defineComponent({
   components: {
     SidebarCategory,
   },
   setup() {
+    const { isCollapsed } = sidebarCollapsible;
     const { filteredApi } = useMethods();
 
-    return { filteredApi };
+    return { filteredApi, isCollapsed };
   },
 });
 </script>
@@ -34,8 +43,17 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 1023px) {
-  .sidebar {
+  .sidebar--collapsed {
     display: none;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    background: $color-bg;
   }
 }
 </style>

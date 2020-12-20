@@ -1,11 +1,13 @@
 <template>
-  <r-button block class="method" @click="navigateToMethod(categoryId, namespace, method.name)">
+  <r-button block class="method" @click="onMethodClick">
     {{ method.name }}
   </r-button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
+import { sidebarCollapsible } from '@/components/AppSidebar/AppSidebar.vue';
 
 import { useMethods } from '@/hooks/methods';
 
@@ -24,11 +26,18 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props) {
     const { navigateToMethod } = useMethods();
+    const { setCollapsed } = sidebarCollapsible;
+
+    function onMethodClick() {
+      const { categoryId, method, namespace } = props;
+      navigateToMethod(categoryId, namespace, method.name);
+      setCollapsed(true);
+    }
 
     return {
-      navigateToMethod,
+      onMethodClick,
     };
   },
 });
