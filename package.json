@@ -1,10 +1,13 @@
 {
   "name": "script-reference",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
+    "setup": "yarn && git clone https://github.com/Raid-Gaming/script-reference-api api && cd api && yarn",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "yarn build:api && yarn build:app",
+    "build:app": "vue-cli-service build",
+    "build:api": "rimraf ./public/api && cd api && yarn build && cd .. && mv ./api/dist ./public/api",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -44,6 +47,7 @@
     "husky": "^4.3.5",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "typescript": "^4.1.2"
