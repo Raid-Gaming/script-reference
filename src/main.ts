@@ -5,7 +5,6 @@ import Button from '@/components/Button/Button.vue';
 import Section from '@/components/Section/Section.vue';
 
 import App from '@/App.vue';
-import '@/registerServiceWorker';
 
 import i18n from '@/i18n';
 import router from '@/router';
