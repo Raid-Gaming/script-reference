@@ -8,5 +8,5 @@ export interface IApiMethod {
   return?: string;
   example: string[];
   engine?: 'SP' | 'MP';
-  deprected?: boolean;
+  deprecated?: boolean;
 }
