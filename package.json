@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "setup": "yarn && git clone https://github.com/Raid-Gaming/script-reference-api api && cd api && yarn",
+    "setup": "yarn && git clone https://github.com/Raid-Gaming/script-reference-api api && cd api && yarn && cd .. && yarn build:api",
     "serve": "vue-cli-service serve",
     "build": "yarn build:api && yarn build:app",
     "build:app": "vue-cli-service build",
