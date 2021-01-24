@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <bookmark-icon class="header__bookmarks-icon" @click="toggleCollapse" />
     <filters />
     <search />
     <dark-mode-toggle />
@@ -11,13 +12,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 
 import DarkModeToggle from '@/components/AppHeader/DarkModeToggle.vue';
 import Filters from '@/components/AppHeader/Filters.vue';
 import Search from '@/components/Search/Search.vue';
 
 import ArrowRightIcon from '@/icons/ArrowRight.vue';
+import BookmarkIcon from '@/icons/Bookmark.vue';
+
+import { useCollapsible } from '@/hooks/collapsible';
 
 export default defineComponent({
   components: {
@@ -25,6 +29,15 @@ export default defineComponent({
     DarkModeToggle,
     Filters,
     Search,
+    BookmarkIcon,
+  },
+  setup() {
+    const { isCollapsed, toggleCollapse } = inject('bookmarkCollapsible', useCollapsible());
+
+    return {
+      isCollapsed,
+      toggleCollapse,
+    };
   },
 });
 </script>
@@ -37,6 +50,7 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
   background: $color-bg;
   border-bottom: 1px solid $color-border;
   height: 48px;
@@ -66,6 +80,11 @@ export default defineComponent({
     width: 14px;
     height: 14px;
   }
+}
+
+.header__bookmarks-icon {
+  width: 14px;
+  height: 14px;
 }
 
 @media screen and (max-width: 1023px) {

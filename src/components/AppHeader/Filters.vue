@@ -41,7 +41,6 @@ export default defineComponent({
 @import '@/styles/search.scss';
 
 .filters {
-  margin-left: auto;
   display: flex;
   flex-direction: row;
 

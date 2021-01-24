@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="themeId">
+  <div id="app" :class="appClasses">
     <template v-if="isLoaded">
       <app-header />
       <app-header-mobile />
@@ -8,6 +8,7 @@
         <router-view class="app__route" />
         <app-footer />
       </main>
+      <bookmark-sidebar v-if="!isBookmarksCollapsed" />
     </template>
     <spinner :visible="!isLoaded" full-page />
   </div>
@@ -20,6 +21,7 @@ import AppFooter from '@/components/AppFooter/AppFooter.vue';
 import AppHeader from '@/components/AppHeader/AppHeader.vue';
 import AppHeaderMobile from '@/components/AppHeader/AppHeaderMobile.vue';
 import AppSidebar from '@/components/AppSidebar/AppSidebar.vue';
+import BookmarkSidebar from '@/components/Bookmark/BookmarkSidebar.vue';
 import Spinner from '@/components/Spinner/Spinner.vue';
 
 import { useCollapsible } from '@/hooks/collapsible';
@@ -33,23 +35,31 @@ export default defineComponent({
     AppHeaderMobile,
     AppSidebar,
     Spinner,
+    BookmarkSidebar,
   },
   setup() {
     const searchCollapsible = useCollapsible(true, 'searchCollapsible');
     const sidebarCollapsible = useCollapsible(true, 'sidebarCollapsible');
+    const bookmarkCollapsible = useCollapsible(false, 'bookmarkCollapsible');
+
     const { fetchIndex, isLoaded } = useMethods();
     const { theme } = useTheme();
 
     provide('searchCollapsible', searchCollapsible);
     provide('sidebarCollapsible', sidebarCollapsible);
+    provide('bookmarkCollapsible', bookmarkCollapsible);
 
-    const themeId = computed(() => `theme-${theme.value}`);
+    const { isCollapsed: isBookmarksCollapsed } = bookmarkCollapsible;
+    const appClasses = computed(() => ({
+      [`theme-${theme.value}`]: true,
+      'bookmarks-collapsed': isBookmarksCollapsed.value,
+    }));
 
     onBeforeMount(() => {
       fetchIndex();
     });
 
-    return { isLoaded, themeId };
+    return { isLoaded, appClasses, isBookmarksCollapsed };
   },
 });
 </script>
@@ -97,10 +107,16 @@ body,
 
   display: grid;
   grid-template-areas:
-    'sidebar header'
-    'sidebar main';
-  grid-template-columns: 360px $content-width;
+    'sidebar header header'
+    'sidebar main bookmarks';
+  grid-template-columns: 360px $content-width 300px;
   grid-template-rows: min-content $content-width;
+
+  &.bookmarks-collapsed {
+    grid-template-areas:
+      'sidebar header header'
+      'sidebar main main';
+  }
 }
 
 .app__main {
