@@ -44,7 +44,9 @@ export function useCollapsible(defaultValue = false, key?: string) {
   });
 
   return {
+    collapse,
     collapseAll,
+    expand,
     expandAll,
     isCollapsed,
     setCollapsed,

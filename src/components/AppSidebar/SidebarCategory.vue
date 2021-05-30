@@ -45,7 +45,12 @@ export default defineComponent({
     },
   },
   setup() {
-    const { collapseAll, expandAll, isCollapsed, toggleCollapse } = useCollapsible();
+    const { collapseAll, expand, expandAll: expandAllChildren, isCollapsed, toggleCollapse } = useCollapsible();
+
+    function expandAll(categoryId: string) {
+      expand();
+      expandAllChildren(categoryId);
+    }
 
     return {
       collapseAll,
