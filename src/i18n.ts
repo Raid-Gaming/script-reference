@@ -1,7 +1,7 @@
-import { createI18n, I18n, I18nOptions } from 'vue-i18n';
+import { createI18n, I18nOptions, LocaleMessageDictionary } from 'vue-i18n';
 
 function loadLocaleMessages() {
-  const messages: Record<string, string> = {};
+  const messages: LocaleMessageDictionary<string> = {};
   if (process.env.NODE_ENV !== 'test') {
     const locales = require.context('./locales', true, /[a-z0-9]+\.json$/i);
     locales.keys().forEach((key) => {
@@ -22,4 +22,4 @@ export default createI18n({
   messages: loadLocaleMessages(),
   silentTranslationWarn: process.env.NODE_ENV === 'development',
   warnHtmlInMessage: 'off', // translations are bundled and known, no possibility for XSS
-} as I18nOptions) as I18n & { install: never };
+} as I18nOptions); // as I18nOptions) as I18n & { install: never };

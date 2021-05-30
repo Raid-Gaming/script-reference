@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { highlightBlock } from 'highlight.js';
+import hljs from 'highlight.js';
 import { computed, defineComponent, onMounted, ref } from 'vue';
 
 export default defineComponent({
@@ -20,7 +20,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (codeBlock.value) {
-        highlightBlock(codeBlock.value);
+        hljs.highlightElement(codeBlock.value);
       }
     });
 
